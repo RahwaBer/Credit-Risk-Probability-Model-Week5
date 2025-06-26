@@ -44,3 +44,43 @@ Since direct **default labels** are often unavailable (e.g., due to short custom
 1. **Basel II prioritizes transparency** → Interpretable models reduce regulatory and reputational risks.  
 2. **Proxy variables are imperfect** → Validate rigorously to avoid biased decisions.  
 3. **Balance simplicity and performance** → Complexity must demonstrably improve outcomes without compromising compliance.  
+
+
+# ** Task One **  
+
+## 🧪 Exploratory Data Analysis (EDA)
+
+To build a reliable credit scoring model, I conducted a comprehensive exploratory data analysis (EDA) to understand the structure, distribution, and quality of the data provided by the eCommerce platform. Below is a summary of our key EDA tasks:
+
+### 1. Central Tendency, Dispersion, and Shape
+
+* Examined key numerical features such as `Amount` and `Value` to understand their **mean**, **median**, **standard deviation**, **IQR**, **skewness**, and **kurtosis**.
+* Identified that both fields exhibit **positive skewness** and **long tails**, which is typical of financial transaction data.
+
+### 2. Visualizing Distributions
+
+* Created **enhanced histograms** and **boxplots** to analyze the distribution of `Amount` and `Value`, with mean and median annotations to highlight skewness.
+* Applied **log transformation** on skewed variables for better visualization and modeling readiness.
+
+### 3. Categorical Feature Analysis
+
+* Analyzed the distribution of categorical variables such as `ChannelId`, `CountryCode`, `ProductCategory`, `CurrencyCode`, and `FraudResult`.
+* Generated frequency bar plots to observe **class imbalance**, **high-cardinality categories**, and **potential grouping needs**.
+
+### 4. Relationships Between Numerical Features
+
+* Calculated the **correlation matrix** and plotted a heatmap to understand relationships between `Amount`, `Value`, and other numerical attributes.
+* Used **pair plots** to inspect linear trends, and flagged highly correlated features for potential dimensionality reduction.
+* Considered **Variance Inflation Factor (VIF)** to detect multicollinearity risks.
+
+### 5. Missing Value Analysis and Imputation Strategy
+
+* Identified columns with missing values and calculated the **missing count and percentage**.
+* Selected **appropriate imputation strategies**:
+
+  * Median imputation for numerical fields with low missingness
+  * Mode or "Unknown" category filling for categorical fields
+  * Created binary indicators for missing values where relevant
+* Visualized missingness using a **heatmap** to identify potential data quality issues.
+
+---
