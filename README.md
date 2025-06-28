@@ -46,7 +46,7 @@ Since direct **default labels** are often unavailable (e.g., due to short custom
 3. **Balance simplicity and performance** → Complexity must demonstrably improve outcomes without compromising compliance.  
 
 
-# ** Task One **  
+# ** Task Two **  
 
 ## 🧪 Exploratory Data Analysis (EDA)
 
@@ -82,5 +82,66 @@ To build a reliable credit scoring model, I conducted a comprehensive explorator
   * Mode or "Unknown" category filling for categorical fields
   * Created binary indicators for missing values where relevant
 * Visualized missingness using a **heatmap** to identify potential data quality issues.
+
+---
+
+## ⚙️ Task 3: Feature Engineering
+
+In this stage, we built a **robust, automated, and reproducible data processing pipeline** to transform raw transaction-level data into a model-ready format using `sklearn.pipeline.Pipeline` and `ColumnTransformer`. The goal was to prepare high-quality features that improve model accuracy, interpretability, and generalizability.
+
+### ✅ 1. Aggregated Customer Behavior Features
+
+We engineered aggregated features by grouping transactions by `CustomerId` to understand customer-level financial behavior:
+
+* **Total Transaction Amount** – Sum of all transactions
+* **Average Transaction Amount** – Mean per customer
+* **Transaction Count** – Total number of transactions
+* **Standard Deviation** – Variability in spending
+
+### ✅ 2. Temporal Feature Extraction
+
+From the `TransactionStartTime` field, we extracted key time-based features:
+
+* **Transaction Hour**
+* **Transaction Day**
+* **Transaction Month**
+* **Transaction Year**
+* **Day of Week** (optional)
+
+These help identify time-based patterns and behavioral signals.
+
+### ✅ 3. Categorical Feature Encoding
+
+We transformed categorical features into numerical format using:
+
+* **One-Hot Encoding** for nominal categories (e.g., `ChannelId`, `ProductCategory`)
+* **Label Encoding** for binary/ordinal fields (e.g., `FraudResult`)
+
+This made them usable by machine learning models.
+
+### ✅ 4. Missing Value Handling
+
+We applied different strategies based on feature type:
+
+* **Numerical**: Median imputation
+* **Categorical**: Mode imputation or replacement with `"Unknown"`
+* **Row/Column Removal**: Applied for targets or heavily missing fields
+
+### ✅ 5. Scaling Numerical Features
+
+To bring numerical variables to a comparable scale, we implemented:
+
+* **Standardization** (mean = 0, std = 1) using `StandardScaler`
+* **Normalization** (scaling to \[0, 1]) using `MinMaxScaler` (optional toggle)
+
+These were applied via `Pipeline` to ensure consistency during training and inference.
+
+### ✅ 6. End-to-End Preprocessing Pipeline
+
+All steps were integrated using `Pipeline` and `ColumnTransformer`, enabling:
+
+* Consistent preprocessing
+* Modular and maintainable code
+* Compatibility with model training and deployment workflows
 
 ---
