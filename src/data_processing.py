@@ -37,7 +37,7 @@ class TimeFeaturesExtractor(BaseEstimator, TransformerMixin):
         return X[['CustomerId', 'transaction_hour', 'transaction_day', 'transaction_month', 'transaction_year', 'transaction_day_of_week']]
 
 # Load your data
-df = pd.read_csv("data.csv")
+df = pd.read_csv("data/raw/data.csv")
 
 # Define pipelines
 aggregate_pipeline = Pipeline([

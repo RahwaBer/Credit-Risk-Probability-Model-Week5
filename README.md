@@ -145,3 +145,36 @@ All steps were integrated using `Pipeline` and `ColumnTransformer`, enabling:
 * Compatibility with model training and deployment workflows
 
 ---
+
+## 🎯 Task 4: Proxy Target Variable Engineering
+
+Since the dataset lacks a direct label for credit risk or default, we created a **proxy target variable** to identify high-risk customers programmatically. This enables supervised learning for credit scoring.
+
+### Key Steps:
+
+1. **Calculate RFM Metrics**
+   For each customer (`CustomerId`), we computed the classic Recency, Frequency, and Monetary (RFM) features based on transaction history:
+
+   * **Recency:** Days since last transaction relative to a snapshot date
+   * **Frequency:** Number of transactions
+   * **Monetary:** Total transaction amount
+
+2. **Cluster Customers Using K-Means**
+   We standardized RFM features and applied K-Means clustering (3 clusters, fixed random state) to segment customers into distinct behavioral groups.
+
+3. **Identify High-Risk Cluster**
+   By analyzing cluster statistics (mean Recency, Frequency, Monetary), we identified the cluster characterized by:
+
+   * Highest Recency (longest inactivity)
+   * Lowest Frequency and Monetary values
+     This cluster was labeled as the **high-risk proxy group**.
+
+4. **Assign Binary Target Label**
+   We created a new binary column, `is_high_risk`, assigning:
+
+   * `1` for customers in the high-risk cluster
+   * `0` for all others
+
+5. **Integrate Target Variable**
+   The `is_high_risk` label was merged into the main customer-level dataset (RFM data), ready to be used as the target variable for model training.
+
