@@ -232,3 +232,42 @@ This task focused on developing a structured, reproducible model training pipeli
 
 ---
 
+## 📦 Task 6: Model Deployment, Serving, and Continuous Integration (CI)
+
+### ✅ Overview
+
+This task focuses on deploying the trained credit risk model as a REST API service and setting up automated testing to ensure code quality.
+
+### ✅ Key Deliverables
+
+1. **FastAPI Service**
+
+   * Created a `/predict` endpoint that accepts new customer data matching the model’s features.
+   * Input and output validation implemented using **Pydantic** models for reliable and clear API communication.
+   * Returns risk predictions along with risk probability scores.
+
+2. **Dockerization**
+
+   * Built a Docker image to containerize the FastAPI app.
+   * Configured the container to run the app with Uvicorn as the ASGI server.
+   * Exposed port 8000 for API access.
+
+3. **Docker Compose**
+
+   * Developed a `docker-compose.yml` file to easily build and run the service with a single command.
+   * Simplifies local development and deployment workflow.
+
+4. **Continuous Integration with GitHub Actions**
+
+   * Added a GitHub Actions workflow (`.github/workflows/ci.yml`) that triggers on every push to the `main` branch.
+   * Automatically sets up Python, installs dependencies, and runs unit tests using `pytest`.
+   * Helps maintain code quality and prevent regressions.
+
+---
+
+### ✅ Outcome
+
+A scalable, validated API service for credit risk prediction is now production-ready, with automated testing ensuring robustness and ease of deployment using Docker and GitHub Actions.
+
+---
+

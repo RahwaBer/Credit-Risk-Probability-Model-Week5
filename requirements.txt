@@ -1,0 +1,5 @@
+mlflow
+pytest
+fastapi
+uvicorn
+flake8  
