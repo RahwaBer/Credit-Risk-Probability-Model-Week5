@@ -178,3 +178,57 @@ Since the dataset lacks a direct label for credit risk or default, we created a 
 5. **Integrate Target Variable**
    The `is_high_risk` label was merged into the main customer-level dataset (RFM data), ready to be used as the target variable for model training.
 
+---
+
+## 📦 Task 5: Model Training, Evaluation & Experiment Tracking
+
+This task focused on developing a structured, reproducible model training pipeline with experiment tracking and evaluation.
+
+### ✅ Key Steps:
+
+1. **Dependency Management**
+
+   * Added `mlflow` for experiment tracking and model versioning.
+   * Added `pytest` for unit testing.
+
+2. **Data Preparation**
+
+   * Split the dataset into training and test sets using `train_test_split` with stratification to preserve class balance.
+
+3. **Model Training**
+
+   * Trained two classification models: `Logistic Regression` (baseline) and `Random Forest` (ensemble).
+   * Evaluated models using key metrics: Accuracy, Precision, Recall, F1-Score, and ROC-AUC.
+
+4. **Hyperparameter Tuning**
+
+   * Applied `GridSearchCV` for Logistic Regression and `RandomizedSearchCV` for Random Forest.
+   * Selected the best model based on cross-validated F1-score.
+
+5. **Model Evaluation**
+
+   * Evaluated final models on the test set using:
+
+     * ✅ Accuracy
+     * ✅ Precision
+     * ✅ Recall
+     * ✅ F1 Score
+     * ✅ ROC-AUC
+   * Logistic Regression achieved perfect scores and was selected as the best model.
+
+6. **MLflow Integration**
+
+   * Logged hyperparameters, evaluation metrics, and model artifacts.
+   * Registered the best-performing Logistic Regression model in the **MLflow Model Registry** under the name `CreditRiskLogisticModel`.
+
+7. **Unit Testing**
+
+   * Created unit tests using `pytest` for helper functions (e.g., RFM score calculation).
+   * Validated correctness and exception handling to ensure code reliability.
+
+---
+
+✅ **Outcome**: A complete ML workflow including training, tuning, evaluation, tracking, and versioned model registration, with testing to ensure code robustness.
+
+---
+
